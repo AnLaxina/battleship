@@ -6,6 +6,6 @@ export default class Ship {
   }
 
   hit(numberOfHits = 1) {
-    this.amountOfTimesHit++;
+    this.amountOfTimesHit += numberOfHits;
   }
 }
