@@ -1,16 +1,16 @@
 export default class Ship {
   constructor(length) {
     this.length = length;
-    this.amountOfTimesHit = 0;
+    this.hitCount = 0;
     this.hasSunk = false;
   }
 
   hit(numberOfHits = 1) {
-    this.amountOfTimesHit += numberOfHits;
+    this.hitCount += numberOfHits;
   }
 
   isSunk() {
-    if (this.amountOfTimesHit >= this.length) {
+    if (this.hitCount >= this.length) {
       this.hasSunk = true;
     }
     return this.hasSunk;
