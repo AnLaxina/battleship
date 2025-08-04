@@ -8,4 +8,11 @@ export default class Ship {
   hit(numberOfHits = 1) {
     this.amountOfTimesHit += numberOfHits;
   }
+
+  isSunk() {
+    if (this.amountOfTimesHit >= this.length) {
+      this.hasSunk = true;
+    }
+    return this.hasSunk;
+  }
 }
