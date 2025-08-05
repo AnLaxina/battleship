@@ -15,13 +15,11 @@ export default class Gameboard {
 
     // To denote that there is a ship on the board, each "cell" will have a value of the specific ship object
     // if the cell is empty, then the cell would just be null
-    if(currentPosition !== null) {
-        currentShip.hit();
+    if (currentPosition !== null) {
+      currentShip.hit();
     }
 
     return pairOfCoordinates;
-    }
-
   }
 
   #createBoard() {
