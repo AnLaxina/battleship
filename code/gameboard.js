@@ -6,13 +6,12 @@ export default class Gameboard {
 
   #createBoard() {
     const boardToReturn = [];
-    for (let row = 1; row <= this.size; row++) {
-      for (let col = 1; col <= this.size; col++) {
-        const coordinates = [];
-        coordinates.push(row);
-        coordinates.push(col);
-        boardToReturn.push(coordinates);
+    for (let row = 0; row < this.size; row++) {
+      const currentRow = [];
+      for (let col = 0; col < this.size; col++) {
+        currentRow.push(null);
       }
+      boardToReturn.push(currentRow);
     }
     return boardToReturn;
   }
