@@ -6,7 +6,7 @@ export default class Gameboard {
     this.ships = [];
   }
 
-  receiveAttack(pairOfCoordinates, currentShip) {
+  receiveAttack(pairOfCoordinates) {
     const [x, y] = pairOfCoordinates;
 
     if (this.#isOutOfBounds(x) || this.#isOutOfBounds(y)) {
@@ -18,7 +18,7 @@ export default class Gameboard {
     // To denote that there is a ship on the board, each "cell" will have a value of the specific ship object
     // if the cell is empty, then the cell would just be null
     if (currentPosition !== null) {
-      currentShip.hit();
+      currentPosition.hit();
     } else {
       this.missedAttacks++;
     }
