@@ -3,6 +3,7 @@ export default class Gameboard {
     this.size = size;
     this.board = this.#createBoard();
     this.missedAttacks = 0;
+    this.ships = [];
   }
 
   receiveAttack(pairOfCoordinates, currentShip) {
@@ -23,6 +24,15 @@ export default class Gameboard {
     }
 
     return pairOfCoordinates;
+  }
+
+  allShipsSunk() {
+    for (const ship of this.ships) {
+      if (!ship.isSunk()) {
+        return false;
+      }
+    }
+    return true;
   }
 
   #createBoard() {
