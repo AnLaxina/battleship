@@ -27,7 +27,7 @@ describe("Gameboard", () => {
     const gameboard = new Gameboard();
     gameboard.board[0][0] = newShip;
     gameboard.board[0][1] = newShip;
-    gameboard.receiveAttack([0, 0], newShip);
+    gameboard.receiveAttack([0, 0]);
 
     expect(newShip.hitCount).toEqual(1);
   });
@@ -38,8 +38,8 @@ describe("Gameboard", () => {
     gameboard.board[0][0] = newShip;
     gameboard.board[0][1] = newShip;
 
-    gameboard.receiveAttack([0, 0], newShip);
-    gameboard.receiveAttack([0, 1], newShip);
+    gameboard.receiveAttack([0, 0]);
+    gameboard.receiveAttack([0, 1]);
 
     expect(newShip.isSunk()).toBe(true);
   });
@@ -50,8 +50,8 @@ describe("Gameboard", () => {
     gameboard.board[0][0] = newShip;
     gameboard.board[0][1] = newShip;
 
-    gameboard.receiveAttack([0, 4], newShip);
-    gameboard.receiveAttack([0, 1], newShip);
+    gameboard.receiveAttack([0, 4]);
+    gameboard.receiveAttack([0, 1]);
 
     expect(gameboard.missedAttacks).toEqual(1);
   });
@@ -70,12 +70,12 @@ describe("Gameboard", () => {
     gameboard.board[0][3] = submarine;
     gameboard.board[0][4] = submarine;
 
-    gameboard.receiveAttack([0, 0], destroyer);
-    gameboard.receiveAttack([0, 1], destroyer);
+    gameboard.receiveAttack([0, 0]);
+    gameboard.receiveAttack([0, 1]);
 
-    gameboard.receiveAttack([0, 2], submarine);
-    gameboard.receiveAttack([0, 3], submarine);
-    gameboard.receiveAttack([0, 4], submarine);
+    gameboard.receiveAttack([0, 2]);
+    gameboard.receiveAttack([0, 3]);
+    gameboard.receiveAttack([0, 4]);
 
     expect(gameboard.allShipsSunk()).toBe(true);
   });
