@@ -15,4 +15,9 @@ describe("Gameboard", () => {
     const gameboard = new Gameboard();
     expect(gameboard.board[0][0]).toBeNull();
   });
+
+  test("out of bounds attacks return null", () => {
+    const gameboard = new Gameboard();
+    expect(gameboard.receiveAttack([11, 9])).toBeNull();
+  });
 });
