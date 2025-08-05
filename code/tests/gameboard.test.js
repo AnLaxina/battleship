@@ -43,4 +43,16 @@ describe("Gameboard", () => {
 
     expect(newShip.isSunk()).toBe(true);
   });
+
+  test("missedAttacks should be 1", () => {
+    const newShip = new Ship(2);
+    const gameboard = new Gameboard();
+    gameboard.board[0][0] = newShip;
+    gameboard.board[0][1] = newShip;
+
+    gameboard.receiveAttack([0, 4], newShip);
+    gameboard.receiveAttack([0, 1], newShip);
+
+    expect(gameboard.missedAttacks).toEqual(1);
+  });
 });
