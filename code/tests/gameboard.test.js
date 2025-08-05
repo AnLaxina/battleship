@@ -55,4 +55,28 @@ describe("Gameboard", () => {
 
     expect(gameboard.missedAttacks).toEqual(1);
   });
+
+  test("allShipsSunk should be true", () => {
+    // To easily differentiate each ship, I'll just use their official class name as specified in the game's rules
+    const destroyer = new Ship(2);
+    const submarine = new Ship(3);
+    const gameboard = new Gameboard();
+    gameboard.ships.push(destroyer, submarine);
+
+    gameboard.board[0][0] = destroyer;
+    gameboard.board[0][1] = destroyer;
+
+    gameboard.board[0][2] = submarine;
+    gameboard.board[0][3] = submarine;
+    gameboard.board[0][4] = submarine;
+
+    gameboard.receiveAttack([0, 0], destroyer);
+    gameboard.receiveAttack([0, 1], destroyer);
+
+    gameboard.receiveAttack([0, 2], submarine);
+    gameboard.receiveAttack([0, 3], submarine);
+    gameboard.receiveAttack([0, 4], submarine);
+
+    expect(gameboard.allShipsSunk()).toBe(true);
+  });
 });
