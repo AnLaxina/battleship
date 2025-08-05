@@ -1,4 +1,5 @@
 import Gameboard from "../gameboard.js";
+import Ship from "../ship.js";
 
 describe("Gameboard", () => {
   test("size should be 10", () => {
@@ -19,5 +20,27 @@ describe("Gameboard", () => {
   test("out of bounds attacks return null", () => {
     const gameboard = new Gameboard();
     expect(gameboard.receiveAttack([11, 9])).toBeNull();
+  });
+
+  test("ship should be hit", () => {
+    const newShip = new Ship(2);
+    const gameboard = new Gameboard();
+    gameboard.board[0][0] = newShip;
+    gameboard.board[0][1] = newShip;
+    gameboard.receiveAttack([0, 0], newShip);
+
+    expect(newShip.hitCount).toEqual(1);
+  });
+
+  test("ship should be sunk", () => {
+    const newShip = new Ship(2);
+    const gameboard = new Gameboard();
+    gameboard.board[0][0] = newShip;
+    gameboard.board[0][1] = newShip;
+
+    gameboard.receiveAttack([0, 0], newShip);
+    gameboard.receiveAttack([0, 1], newShip);
+
+    expect(newShip.isSunk()).toBe(true);
   });
 });
