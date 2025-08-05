@@ -7,7 +7,7 @@ export default class Gameboard {
   receiveAttack(pairOfCoordinates) {
     const [x, y] = pairOfCoordinates;
 
-    if (x < 0 || x > this.size - 1 || y < 0 || y > this.size - 1) {
+    if (this.#isOutOfBounds(x) || this.#isOutOfBounds(y)) {
       return null;
     }
   }
@@ -22,5 +22,9 @@ export default class Gameboard {
       boardToReturn.push(currentRow);
     }
     return boardToReturn;
+  }
+
+  #isOutOfBounds(coordinate) {
+    return coordinate < 0 || coordinate > this.size - 1;
   }
 }
