@@ -2,6 +2,7 @@ export default class Gameboard {
   constructor(size = 10) {
     this.size = size;
     this.board = this.#createBoard();
+    this.missedAttacks = 0;
   }
 
   receiveAttack(pairOfCoordinates, currentShip) {
@@ -17,6 +18,8 @@ export default class Gameboard {
     // if the cell is empty, then the cell would just be null
     if (currentPosition !== null) {
       currentShip.hit();
+    } else {
+      this.missedAttacks++;
     }
 
     return pairOfCoordinates;
