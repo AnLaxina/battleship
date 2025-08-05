@@ -4,6 +4,14 @@ export default class Gameboard {
     this.board = this.#createBoard();
   }
 
+  receiveAttack(pairOfCoordinates) {
+    const [x, y] = pairOfCoordinates;
+
+    if (x < 0 || x > this.size - 1 || y < 0 || y > this.size - 1) {
+      return null;
+    }
+  }
+
   #createBoard() {
     const boardToReturn = [];
     for (let row = 0; row < this.size; row++) {
