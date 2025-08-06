@@ -1,4 +1,4 @@
-import Player from "../player.js";
+import Player from "../js/player.js";
 
 describe("Player", () => {
   test("invalid attack should be null", () => {

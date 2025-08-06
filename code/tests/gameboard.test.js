@@ -1,5 +1,5 @@
-import Gameboard from "../gameboard.js";
-import Ship from "../ship.js";
+import Gameboard from "../js/gameboard.js";
+import Ship from "../js/ship.js";
 
 describe("Gameboard", () => {
   test("size should be 10", () => {
