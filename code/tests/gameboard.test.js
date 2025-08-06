@@ -79,4 +79,26 @@ describe("Gameboard", () => {
 
     expect(gameboard.allShipsSunk()).toBe(true);
   });
+
+  test("placeShip() throws error for out of bounds", () => {
+    const newShip = new Ship(2);
+    const gameboard = new Gameboard();
+    expect(() => gameboard.placeShip(newShip, [11, 11])).toThrow(
+      "Out of bounds"
+    );
+  });
+
+  test("placeShip() throws error for cell occupied", () => {
+    const newShip = new Ship(2);
+    const gameboard = new Gameboard();
+    gameboard.placeShip(newShip, [0, 0]);
+    expect(() => gameboard.placeShip(newShip, [0, 0])).toThrow("Cell occupied");
+  });
+
+  test("placeShip() makes ships array length 1", () => {
+    const newShip = new Ship(2);
+    const gameboard = new Gameboard();
+    gameboard.placeShip(newShip, [0, 0]);
+    expect(gameboard.ships.length).toEqual(1);
+  });
 });
