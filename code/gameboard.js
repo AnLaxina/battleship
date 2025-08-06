@@ -35,6 +35,25 @@ export default class Gameboard {
     return true;
   }
 
+  placeShip(ship, [x, y], isVertical = false) {
+    for (let i = 0; i < ship.length; i++) {
+      const newX = isVertical ? x + i : x;
+      const newY = isVertical ? y : y + i;
+
+      if (this.#isOutOfBounds(newX) || this.#isOutOfBounds(newY)) {
+        throw new Error("Out of bounds");
+       }
+
+      if (this.board[newX][newY] !== null) {
+        throw new Error("Cell occupied");
+       }
+        this.board[newX][newY] = ship;
+      }
+
+      this.ships.push(ship);
+    }
+  
+
   #createBoard() {
     const boardToReturn = [];
     for (let row = 0; row < this.size; row++) {
