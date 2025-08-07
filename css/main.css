@@ -14,3 +14,14 @@ body {
 
     background-color: var(--main-bg-color);
 }
+
+.gameboard {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.cell {
+    outline: solid 1px black;
+    height: 75px;
+}
