@@ -44,6 +44,11 @@ main {
     aspect-ratio: 1 / 1;
 }
 
+.cell:hover {
+    filter: brightness(90%);
+    cursor: pointer;
+}
+
 .cell.empty {
     background-color: var(--cell-default);
 }

@@ -18,7 +18,7 @@ export default class GameboardDOM {
       `div[data-coordinate="${coordinates}"`
     );
 
-    chosenCell.classList.remove("hit", "missed", "ship");
+    chosenCell.classList.remove("hit", "missed", "ship", "empty");
     chosenCell.classList.add(type);
   }
 }
