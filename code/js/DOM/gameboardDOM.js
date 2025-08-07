@@ -7,6 +7,7 @@ export default class GameboardDOM {
       for (let r = 0; r < this.BOARD_SIZE; r++) {
         const boardCell = document.createElement("div");
         boardCell.className = "cell";
+        boardCell.dataset.coordinate = [i, r];
         gameboardDiv.appendChild(boardCell);
       }
     }
