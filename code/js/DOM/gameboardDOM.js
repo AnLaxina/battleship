@@ -6,17 +6,19 @@ export default class GameboardDOM {
     for (let i = 0; i < this.BOARD_SIZE; i++) {
       for (let r = 0; r < this.BOARD_SIZE; r++) {
         const boardCell = document.createElement("div");
-        boardCell.className = "cell";
+        boardCell.className = "cell empty";
         boardCell.dataset.coordinate = [i, r];
         gameboardDiv.appendChild(boardCell);
       }
     }
   }
 
-  static changeCell(coordinates, type = "default") {
+  static changeCell(coordinates, type = "empty") {
     const chosenCell = document.querySelector(
       `div[data-coordinate="${coordinates}"`
     );
+
+    chosenCell.classList.remove("hit", "missed", "ship");
     chosenCell.classList.add(type);
   }
 }
