@@ -1,3 +1,1 @@
-import Ship from "./code/ship.js";
-
-const coolShip = new Ship();
+console.log("This is the start of Battleship!");
