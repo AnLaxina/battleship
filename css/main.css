@@ -8,11 +8,29 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     font-family: "Nanum Gothic Coding", monospace;
     font-weight: 400;
     font-style: normal;
-
     background-color: var(--main-bg-color);
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    width: 100%;
+}
+
+.board-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
 }
 
 .gameboard {
