@@ -40,6 +40,22 @@ main {
 }
 
 .cell {
-    outline: solid 1px black;
-    height: 75px;
+    outline: solid 1px var(--grid-border);
+    aspect-ratio: 1 / 1;
+}
+
+.cell.empty {
+    background-color: var(--cell-default);
+}
+
+.cell.hit {
+    background-color: var(--hit-ship);
+}
+
+.cell.missed {
+    background-color: var(--missed-shot);
+}
+
+.cell.ship {
+    background-color: var(--ship-cell);
 }
