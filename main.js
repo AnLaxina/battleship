@@ -6,3 +6,5 @@ console.log("This is the start of Battleship!");
 
 GameboardDOM.initializeBoard("player1-board");
 GameboardDOM.initializeBoard("player2-board");
+
+GameboardDOM.changeCell([0, 0], "hit");

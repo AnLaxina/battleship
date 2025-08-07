@@ -12,4 +12,11 @@ export default class GameboardDOM {
       }
     }
   }
+
+  static changeCell(coordinates, type = "default") {
+    const chosenCell = document.querySelector(
+      `div[data-coordinate="${coordinates}"`
+    );
+    chosenCell.classList.add(type);
+  }
 }
