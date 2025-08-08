@@ -1,7 +1,7 @@
 import Gameboard from "./gameboard.js";
 
 export default class Player {
-  constructor(type = "real", isTurnFirst = false) {
+  constructor(type = "player1", isTurnFirst = false) {
     this.type = type;
     this.gameboard = new Gameboard();
     this.isTurn = isTurnFirst;
@@ -14,6 +14,6 @@ export default class Player {
   }
 
   placeShip(ship, startCoord, isVertical = false) {
-    this.gameboard.placeShip(ship, startCoord, isVertical);
+    this.gameboard.placeShip(ship, startCoord, isVertical, this.type);
   }
 }
