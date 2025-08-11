@@ -1,4 +1,5 @@
 import GameboardDOM from "./DOM/gameboardDOM.js";
+import Shipyard from "./shipyard.js";
 import Player from "./player.js";
 
 export default class GameController {

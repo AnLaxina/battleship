@@ -14,6 +14,6 @@ export default class Player {
   }
 
   placeShip(ship, startCoord, isVertical = false) {
-    this.gameboard.placeShip(ship, startCoord, isVertical);
+    return this.gameboard.placeShip(ship, startCoord, isVertical);
   }
 }

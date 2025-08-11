@@ -15,7 +15,7 @@ export default class GameboardDOM {
 
   static changeCell(playerId, coordinates, type = "empty") {
     const chosenCell = document.querySelector(
-      `#${playerId} div[data-coordinate="${coordinates}"]`
+      `#${playerId}-board div[data-coordinate="${coordinates}"]`
     );
 
     chosenCell.classList.remove("hit", "missed", "ship", "empty");
