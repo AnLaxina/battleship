@@ -1,10 +1,14 @@
-import GameboardDOM from "./DOM/gameboardDOM.js";
 export default class Gameboard {
+  #nextShipId = 1;
+
   constructor(size = 10) {
     this.size = size;
     this.board = this.#createBoard();
     this.missedAttacks = 0;
-    this.ships = [];
+    // Here, shipId: {ship, coordinates:Set, hits:Set}
+    this.ships = new Map();
+    // "x, y" that were attacked
+    this.fired = new Set();
   }
 
   receiveAttack(pairOfCoordinates) {
@@ -36,7 +40,10 @@ export default class Gameboard {
     return true;
   }
 
-  placeShip(ship, [x, y], isVertical = false, playerType) {
+  placeShip(ship, [x, y], isVertical = false) {
+    const coordinates = [];
+
+    // 1. Validate all the cells and check if you can place ships
     for (let i = 0; i < ship.length; i++) {
       const newX = isVertical ? x + i : x;
       const newY = isVertical ? y : y + i;
@@ -48,11 +55,23 @@ export default class Gameboard {
       if (this.board[newX][newY] !== null) {
         throw new Error("Cell occupied");
       }
-      this.board[newX][newY] = ship;
-      GameboardDOM.changeCell(playerType, [newX, newY], "ship");
+
+      coordinates.push([newX, newY]);
     }
 
-    this.ships.push(ship);
+    // 2. If the entire ship can be placed, add the ship into the `ships` hash map
+    const shipId = this.#nextShipId++;
+    coordinates.forEach(
+      ([newX, newY]) => (this.board[newX][newY] = { shipId, hit: false })
+    );
+    this.ships.set(shipId, {
+      ship,
+      coordinates: new Set(coordinates.map(([a, b]) => `${a},${b}`)),
+      hits: new Set(),
+    });
+
+    // 3. Now, the caller can paint the UI
+    return { shipId, coordinates };
   }
 
   #createBoard() {
