@@ -21,4 +21,18 @@ export default class GameController {
     );
     return { ship, coordinates };
   }
+
+  attack(attacker, defender, coordinates) {
+    const result = attacker.attack(defender, coordinates);
+
+    if (!result.ok) return result; // out of bounds, so return immediately
+
+    GameboardDOM.changeCell(
+      defender.type,
+      result.coordinates,
+      result.hit ? "hit" : "missed"
+    );
+
+    return result;
+  }
 }
