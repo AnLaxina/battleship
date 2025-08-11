@@ -10,4 +10,15 @@ export default class GameController {
     this.player1 = new Player("player1", true);
     this.player2 = new Player("player2", false);
   }
+
+  placeShip(player, shipType, startCoord, vertical = false) {
+    const ship = Shipyard.create(shipType);
+    const { coordinates } = player.placeShip(ship, startCoord, vertical);
+
+    // Paint the cells
+    coordinates.forEach((coordinate) =>
+      GameboardDOM.changeCell(player.type, coordinate, "ship")
+    );
+    return { ship, coordinates };
+  }
 }
