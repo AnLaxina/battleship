@@ -30,4 +30,14 @@ export default class GameboardDOM {
       callback(coordinate);
     });
   }
+
+  static changeCurrentTurn(player) {
+    const currentTurnDOM = document.querySelector("h3");
+    currentTurnDOM.textContent = "Current Turn: ";
+    if (player.isTurn) {
+      currentTurnDOM.textContent += " Player 1";
+    } else {
+      currentTurnDOM.textContent += " Computer";
+    }
+  }
 }

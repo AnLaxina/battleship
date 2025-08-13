@@ -32,6 +32,7 @@ export default class GameController {
 
     if (!result.ok) return result; // out of bounds, so return immediately
 
+    GameboardDOM.changeCurrentTurn(this.player1);
     GameboardDOM.changeCell(
       defender.type,
       result.coordinates,
