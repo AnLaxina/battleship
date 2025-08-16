@@ -24,7 +24,6 @@ export default class GameController {
     coordinates.forEach((coordinate) =>
       GameboardDOM.changeCell(player.type, coordinate, "ship")
     );
-    GameboardDOM.changeGameboardState(this.player1, true);
 
     return { ship, coordinates };
   }
@@ -40,6 +39,7 @@ export default class GameController {
       result.coordinates,
       result.hit ? "hit" : "missed"
     );
+    GameboardDOM.changeGameboardState(this.player1, true);
 
     return result;
   }

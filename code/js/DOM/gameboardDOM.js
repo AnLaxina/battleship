@@ -4,11 +4,10 @@ export default class GameboardDOM {
   static initializeBoard(player) {
     const gameboardDiv = document.querySelector(`#${player}-board`);
 
-    gameboardDiv.classList.add("board");
     gameboardDiv.setAttribute("role", "grid");
     gameboardDiv.setAttribute(
       "aria-label",
-      `${player === "player1" ? "Player 1" : "Computer"} board`
+      `${player === "player1" ? "Player 1" : "Computer"} gameboard`
     );
     gameboardDiv.dataset.board = player;
 
@@ -37,29 +36,35 @@ export default class GameboardDOM {
     const board = document.querySelector(`#${player}-board`);
     board.addEventListener("click", (e) => {
       const cell = e.target;
-      cell.classList.add("miss");
-      const coordinate = cell.dataset.coordinate.split(",");
-      callback(coordinate);
+      const isDisabled = board.classList.contains("is-disabled");
+      const isValidCellClick = cell || board.contains(cell);
+
+      if (!isDisabled && isValidCellClick) {
+        const coordinate = cell.dataset.coordinate;
+        callback(coordinate);
+      } else {
+        return;
+      }
     });
   }
 
   static changeCurrentTurn(player) {
-    const currentTurnDOM = document.querySelector("h3");
-    currentTurnDOM.textContent = "Current Turn: ";
-    if (player.isTurn) {
-      currentTurnDOM.textContent += " Player 1";
-    } else {
-      currentTurnDOM.textContent += " Computer";
-    }
+    const currentTurnDOM = document.querySelector("[data-role='turn']");
+
+    // For screen readers, announce politely
+    currentTurnDOM.setAttribute("role", "status");
+    currentTurnDOM.setAttribute("aria-live", "polite");
+
+    currentTurnDOM.textContent = `Current Turn: ${
+      player.isTurn ? "Player 1" : "Computer"
+    }`;
   }
 
-  static changeGameboardState(player, enable = true) {
+  static changeGameboardState(player, isDisabled = false) {
     const boardSelectorString = `${player.type}-board`;
     const gameboard = document.querySelector(`#${boardSelectorString}`);
-    if (enable) {
-      gameboard.id = boardSelectorString;
-    } else {
-      gameboard.id = `disabled`;
-    }
+
+    gameboard.classList.toggle("is-disabled", isDisabled);
+    gameboard.setAttribute("aria-disabled", `${isDisabled}`);
   }
 }

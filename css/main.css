@@ -98,3 +98,12 @@ h3 {
 #disabled > .cell:hover {
     cursor: not-allowed;
 }
+
+.gameboard.is-disabled {
+    cursor: not-allowed;
+}
+
+.gameboard.is-disabled .cell {
+    filter: brightness(80%);
+    cursor: not-allowed;
+}
