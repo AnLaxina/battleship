@@ -86,3 +86,15 @@ h3 {
 .cell.ship {
     background-color: var(--ship-cell);
 }
+
+#disabled:hover {
+    cursor: not-allowed;
+}
+
+#disabled > .cell {
+    filter: brightness(80%);
+}
+
+#disabled > .cell:hover {
+    cursor: not-allowed;
+}
